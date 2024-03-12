@@ -16,6 +16,8 @@
 		489D74E72B9F811C002493DD /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74E62B9F811C002493DD /* FavouritesView.swift */; };
 		489D74E92B9F8128002493DD /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74E82B9F8128002493DD /* FavouritesViewModel.swift */; };
 		489D74ED2B9F8264002493DD /* MainTabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74EC2B9F8264002493DD /* MainTabbarView.swift */; };
+		489D74F22BA0AB5C002493DD /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 489D74F12BA0AB5C002493DD /* Network */; };
+		489D74F42BA0AB5C002493DD /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 489D74F32BA0AB5C002493DD /* Persistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489D74F42BA0AB5C002493DD /* Persistence in Frameworks */,
+				489D74F22BA0AB5C002493DD /* Network in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +74,7 @@
 				489D74B12B9F7EA6002493DD /* cats */,
 				489D74C42B9F7EA9002493DD /* catsTests */,
 				489D74B02B9F7EA6002493DD /* Products */,
+				489D74F02BA0AB52002493DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +150,13 @@
 			path = MainTabbar;
 			sourceTree = "<group>";
 		};
+		489D74F02BA0AB52002493DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,6 +173,10 @@
 			dependencies = (
 			);
 			name = cats;
+			packageProductDependencies = (
+				489D74F12BA0AB5C002493DD /* Network */,
+				489D74F32BA0AB5C002493DD /* Persistence */,
+			);
 			productName = cats;
 			productReference = 489D74AF2B9F7EA6002493DD /* cats.app */;
 			productType = "com.apple.product-type.application";
@@ -517,6 +533,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		489D74F12BA0AB5C002493DD /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
+		};
+		489D74F32BA0AB5C002493DD /* Persistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Persistence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 489D74A72B9F7EA6002493DD /* Project object */;
 }

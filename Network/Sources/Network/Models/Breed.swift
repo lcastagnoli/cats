@@ -9,9 +9,9 @@ import Foundation
 import SwiftData
 
 @Model
-public struct Breed {
+public final class Breed {
 
-    @Attribute(.unique) let id: String
+    @Attribute(.unique) public let id: String
     public let name: String?
     public let temperament: String?
     public let origin: String?
@@ -37,7 +37,7 @@ extension Breed: Decodable {
         case referenceImageID = "reference_image_id"
     }
     
-    public init(from decoder: Decoder) throws {
+    public convenience init(from decoder: Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
 

@@ -7,11 +7,14 @@
 
 import SwiftUI
 import SwiftData
+import Network
 
 @main
 struct catsApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([])
+        let schema = Schema([
+            Breed.self
+        ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
