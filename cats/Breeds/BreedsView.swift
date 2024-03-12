@@ -18,6 +18,15 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
     }
 
     var body: some View {
-        Text("Breeds")
+        NavigationView {
+            Text("Breeds")
+        }.onAppear {
+            getBreeds()
+        }
+    }
+    
+    private func getBreeds() {
+        
+        viewModel.getBreeds()
     }
 }

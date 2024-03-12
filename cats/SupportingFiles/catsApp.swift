@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import Network
 
 @main
 struct catsApp: App {

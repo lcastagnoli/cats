@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol URLRequestCreator {
+public protocol URLRequestCreator {
 
     var baseURL: URL { get }
     var path: String { get }
@@ -19,11 +19,11 @@ protocol URLRequestCreator {
 
 extension URLRequestCreator {
 
-    var queries: [String: String]? { [:] }
-    var parameters: [String: Any]? { [:] }
-    var headers: [String: String]? { [:] }
+    public var queries: [String: String]? { [:] }
+    public var parameters: [String: Any]? { [:] }
+    public var headers: [String: String]? { [:] }
 
-    func asURLRequest() -> URLRequest {
+    public func asURLRequest() -> URLRequest {
 
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)

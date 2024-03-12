@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Network
 
 enum BreedsRouter: URLRequestCreator {
 
     case breeds
     var baseURL: URL { Environment.baseUrl }
 
-    var method: Method {
+    var method: Network.Method {
 
         switch self {
 

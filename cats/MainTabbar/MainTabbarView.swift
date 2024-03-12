@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Network
 
 struct MainTabbarView: View {
 
     var body: some View {
             TabView {
-                BreedsView(viewModel: BreedsViewModel())
+                BreedsView(viewModel: BreedsViewModel(service: BreedsService(service: Newtork(session: URLSession.shared))))
                     .tabItem {
                         Label("Breeds", systemImage: "text.book.closed")
                     }

@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Network
 
 protocol BreedsServiceProtocol {
 
