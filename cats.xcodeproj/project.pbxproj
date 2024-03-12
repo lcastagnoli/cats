@@ -44,6 +44,7 @@
 		489D74EC2B9F8264002493DD /* MainTabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarView.swift; sourceTree = "<group>"; };
 		489D74EE2B9F8498002493DD /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 		489D74EF2B9F84BA002493DD /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		489D74F52BA0BF96002493DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,7 @@
 		489D74B12B9F7EA6002493DD /* cats */ = {
 			isa = PBXGroup;
 			children = (
+				489D74F52BA0BF96002493DD /* Info.plist */,
 				489D74EA2B9F8174002493DD /* SupportingFiles */,
 				489D74EB2B9F8249002493DD /* MainTabbar */,
 				489D74E52B9F8107002493DD /* Favourites */,
@@ -418,6 +420,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"cats/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cats/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,6 +449,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"cats/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cats/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

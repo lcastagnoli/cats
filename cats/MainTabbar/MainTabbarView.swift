@@ -11,7 +11,7 @@ struct MainTabbarView: View {
 
     var body: some View {
             TabView {
-                BreedsView()
+                BreedsView(viewModel: BreedsViewModel())
                     .tabItem {
                         Label("Breeds", systemImage: "text.book.closed")
                     }

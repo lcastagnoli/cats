@@ -7,12 +7,17 @@
 
 import SwiftUI
 
-struct BreedsView: View {
+struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
+
+    // MARK: Properties
+    @ObservedObject private var viewModel: ViewModel
+
+    // MARK: Initializers
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         Text("Breeds")
     }
-}
-
-#Preview {
-    BreedsView()
 }
