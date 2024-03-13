@@ -16,7 +16,9 @@ public final class Newtork {
     public init(session: URLSession) {
 
         self.session = session
-        self.decoder =  JSONDecoder()
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.decoder = decoder
     }
 }
 

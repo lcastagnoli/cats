@@ -11,6 +11,8 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
 
     // MARK: Properties
     @ObservedObject private var viewModel: ViewModel
+    @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
+    @State private var searchText = ""
 
     // MARK: Initializers
     init(viewModel: ViewModel) {
@@ -21,24 +23,18 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
         NavigationView {
             GeometryReader { geometry in
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
+                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
                         ForEach(viewModel.cardViewModels) { cardViewModel in
-                            CardView(viewModel: cardViewModel)
-                                .frame(width: geometry.size.width/2, height: 200)
-                                .clipped()
-                        }
+                            CardView(viewModel: cardViewModel, width: (geometry.size.width - 10) / 2)
+                        }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
                     }
-                }
+                }   
+                .scrollIndicators(.hidden)
             }
-            .background(Color.black)
+            .padding()
+            .background(Color.white)
         }.onAppear {
-
-            getBreeds()
-        }
-    }
-    
-    private func getBreeds() {
-        
-        viewModel.getBreeds()
+            viewModel.getBreeds()
+        }.searchable(text: $searchText)
     }
 }

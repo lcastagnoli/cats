@@ -38,7 +38,7 @@ final class BreedsViewModel {
     }
 
     private func handle(response: [Breed]) {
-        cards.append(contentsOf: response.map { CardViewModel(with: $0.breedImage?.url)})
+        cards.append(contentsOf: response.map { CardViewModel(with: $0.image?.url, title: $0.name ?? "")})
     }
 }
 

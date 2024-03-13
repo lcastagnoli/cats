@@ -11,16 +11,25 @@ import Combine
 protocol CardViewModelProtocol: Identifiable {
 
     var imageUrl: URL? { get }
+    var title: String { get }
 }
 
 final class CardViewModel { 
 
+    // MARK: Constants
+    enum Constants {
+        static let height = 200.0
+        static let cornerRadius = 5.0
+    }
+
     // MARK: Properties
     private var urlString: String?
+    internal var title: String
 
     // MARK: Initializers
-    init(with string: String?) {
-        self.urlString = string
+    init(with url: String?, title: String) {
+        self.urlString = url
+        self.title = title
     }
 }
 
