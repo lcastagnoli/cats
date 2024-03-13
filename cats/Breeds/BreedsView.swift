@@ -19,8 +19,20 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
 
     var body: some View {
         NavigationView {
-            Text("Breeds")
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
+                        ForEach(viewModel.cardViewModels) { cardViewModel in
+                            CardView(viewModel: cardViewModel)
+                                .frame(width: geometry.size.width/2, height: 200)
+                                .clipped()
+                        }
+                    }
+                }
+            }
+            .background(Color.black)
         }.onAppear {
+
             getBreeds()
         }
     }

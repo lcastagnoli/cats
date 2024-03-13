@@ -11,13 +11,13 @@ import Foundation
 
 protocol BreedsViewModelProtocol: ObservableObject {
 
-    var breedsPublisher: Published<[Breed]>.Publisher { get }
+    var cardViewModels: [CardViewModel] { get }
     func getBreeds()
 }
 final class BreedsViewModel {
 
     // MARK: Properties
-    @Published var breeds: [Breed] = []
+    @Published var cards: [CardViewModel] = []
     @Published var error: Error?
     private var cancellables = Set<AnyCancellable>()
     private var service: BreedsServiceProtocol
@@ -38,14 +38,14 @@ final class BreedsViewModel {
     }
 
     private func handle(response: [Breed]) {
-        breeds = response
+        cards.append(contentsOf: response.map { CardViewModel(with: $0.breedImage?.url)})
     }
 }
 
 // MARK: - BreedsViewModelProtocol
 extension BreedsViewModel: BreedsViewModelProtocol {
 
-    var breedsPublisher: Published<[Breed]>.Publisher { $breeds }
+    var cardViewModels: [CardViewModel] { cards }
 
     func getBreeds() {
 
@@ -57,8 +57,6 @@ extension BreedsViewModel: BreedsViewModelProtocol {
                 self?.handle(response: response)
             })
             .store(in: &cancellables)
-
-
     }
 }
 
