@@ -43,6 +43,7 @@ struct CardView<ViewModel: CardViewModelProtocol>: View {
                 Text(viewModel.title)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.black)
             }
             .frame(width: width, height: CardViewModel.Constants.height)
             .background(
@@ -54,7 +55,9 @@ struct CardView<ViewModel: CardViewModelProtocol>: View {
             }) {
                 Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
                     .padding()
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+                    .background(.white.opacity(0.5))
+                    .cornerRadius(50)
             }
         }
     }

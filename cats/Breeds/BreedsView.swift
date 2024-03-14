@@ -15,8 +15,8 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
     @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
     @State private var searchText = ""
     @SwiftUI.Environment(\.modelContext) private var modelContext
-    @SwiftUI.Environment(\.isSearching) var isSearching
-    @Query private var localBreeds: [LocalBreed]
+    @Query private var persistedBreeds: [LocalBreed]
+    @State private var localBreeds: [LocalBreed] = []
 
     // MARK: Initializers
     init(viewModel: ViewModel) {
@@ -29,11 +29,13 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
                 ScrollView {
                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
                         ForEach(Array(localBreeds.enumerated()), id: \.offset) { index, breed in
-                            CardView(viewModel: CardViewModel(breed: breed),
-                                     width: (geometry.size.width - 10) / 2,
-                                     didTapFavourite: {
-                                handleFavourite(index: index)
-                            })
+                            NavigationLink(destination: DetailsView(breed: breed)) {
+                                CardView(viewModel: CardViewModel(breed: breed),
+                                         width: (geometry.size.width - 10) / 2,
+                                         didTapFavourite: {
+                                    handleFavourite(index: index)
+                                })
+                            }
                         }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
                     }
                 }   
@@ -42,28 +44,27 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
             .padding()
             .background(Color.white)
         }
+        .accentColor(.black)
         .onAppear {
             viewModel.getBreeds {
-                guard localBreeds.isEmpty else { return }
+                localBreeds = persistedBreeds
+                guard persistedBreeds.isEmpty else { return }
                 viewModel.localData.forEach { breed in
                     modelContext.insert(breed)
                 }
             }
         }.searchable(text: $searchText)
             .onSubmit(of: .search) {
-                viewModel.searchBreed(query: searchText)
+                viewModel.searchBreed(query: searchText) { breeds in
+                    localBreeds = breeds
+                }
             }
     }
     
     func handleFavourite(index: Int) {
 
         let breed = localBreeds[index]
-        if localBreeds.contains(where: { $0.id == breed.id && $0.isFavorited}) {
-            breed.isFavorited = false
-            modelContext.insert(breed)
-        } else {
-            breed.isFavorited = true
-            modelContext.insert(breed)
-        }
+        breed.isFavorited.toggle()
+        modelContext.insert(breed)
     }
 }

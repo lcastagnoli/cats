@@ -27,12 +27,14 @@ struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
                 ScrollView {
                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
                         ForEach(Array(breeds.filter { $0.isFavorited }.enumerated()), id: \.offset) { index, breed in
-                            CardView(viewModel: CardViewModel(breed: breed),
-                                     width: (geometry.size.width - 10) / 2,
-                                     didTapFavourite: {
-                                breed.isFavorited = false
-                                modelContext.insert(breed)
-                            })
+                            NavigationLink(destination: DetailsView(breed: breed)) {
+                                CardView(viewModel: CardViewModel(breed: breed),
+                                         width: (geometry.size.width - 10) / 2,
+                                         didTapFavourite: {
+                                    breed.isFavorited = false
+                                    modelContext.insert(breed)
+                                })
+                            }
                         }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
                     }
                 }

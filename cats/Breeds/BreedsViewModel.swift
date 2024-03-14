@@ -12,7 +12,7 @@ import Foundation
 protocol BreedsViewModelProtocol: ObservableObject {
 
     var localData: [LocalBreed] { get }
-    func searchBreed(query: String)
+    func searchBreed(query: String, completion: @escaping ([LocalBreed]) -> Void)
     func getBreeds(completion: @escaping () -> Void)
 }
 final class BreedsViewModel {
@@ -63,14 +63,15 @@ extension BreedsViewModel: BreedsViewModelProtocol {
             .store(in: &cancellables)
     }
     
-    func searchBreed(query: String) {
-        
+    func searchBreed(query: String, completion: @escaping ([LocalBreed]) -> Void) {
+
         service.searchBreed(with: query)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.handle(completion: completion)
-            }, receiveValue: { [weak self] response in
-                self?.handle(response: response)
+            }, receiveValue: { response in
+                let localBreeds = response.map { LocalBreed(with: $0 )}
+                completion(localBreeds)
             })
             .store(in: &cancellables)
     }

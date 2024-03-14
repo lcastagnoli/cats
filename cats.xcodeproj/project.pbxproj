@@ -25,6 +25,7 @@
 		48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855632BA1ADE5008069C9 /* CardViewModel.swift */; };
 		48D855672BA1AF48008069C9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 48D855662BA1AF48008069C9 /* SDWebImageSwiftUI */; };
 		48D8556F2BA301C7008069C9 /* LocalBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556E2BA301C7008069C9 /* LocalBreed.swift */; };
+		48D855722BA3612A008069C9 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855712BA3612A008069C9 /* DetailsView.swift */; };
 		48F8C18B2BA0F7B8002608ED /* BreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8C18A2BA0F7B8002608ED /* BreedImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		489D75012BA0F0B7002493DD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		48D855632BA1ADE5008069C9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		48D8556E2BA301C7008069C9 /* LocalBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBreed.swift; sourceTree = "<group>"; };
+		48D855712BA3612A008069C9 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		48F8C18A2BA0F7B8002608ED /* BreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 		489D74B12B9F7EA6002493DD /* cats */ = {
 			isa = PBXGroup;
 			children = (
+				48D855702BA36116008069C9 /* Details */,
 				489D74F62BA0E0CA002493DD /* Services */,
 				489D74EA2B9F8174002493DD /* SupportingFiles */,
 				489D74EB2B9F8249002493DD /* MainTabbar */,
@@ -203,6 +206,14 @@
 				48D8556E2BA301C7008069C9 /* LocalBreed.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		48D855702BA36116008069C9 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				48D855712BA3612A008069C9 /* DetailsView.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 				48D8556F2BA301C7008069C9 /* LocalBreed.swift in Sources */,
 				48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */,
 				489D74E72B9F811C002493DD /* FavouritesView.swift in Sources */,
+				48D855722BA3612A008069C9 /* DetailsView.swift in Sources */,
 				489D74B32B9F7EA6002493DD /* catsApp.swift in Sources */,
 				489D75022BA0F0B7002493DD /* CardView.swift in Sources */,
 				489D75002BA0E567002493DD /* Environment.swift in Sources */,
