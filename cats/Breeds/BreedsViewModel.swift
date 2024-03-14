@@ -12,6 +12,7 @@ import Foundation
 protocol BreedsViewModelProtocol: ObservableObject {
 
     var cardViewModels: [CardViewModel] { get }
+    func searchBreed(query: String)
     func getBreeds()
 }
 final class BreedsViewModel {
@@ -21,6 +22,7 @@ final class BreedsViewModel {
     @Published var error: Error?
     private var cancellables = Set<AnyCancellable>()
     private var service: BreedsServiceProtocol
+    @Published var searchText = ""
 
     // MARK: Initializers
     init(service: BreedsServiceProtocol) {
@@ -38,18 +40,30 @@ final class BreedsViewModel {
     }
 
     private func handle(response: [Breed]) {
-        cards.append(contentsOf: response.map { CardViewModel(with: $0.image?.url, title: $0.name ?? "")})
+        cards = response.map { CardViewModel(with: $0.image?.url, title: $0.name ?? "") }
     }
 }
 
 // MARK: - BreedsViewModelProtocol
 extension BreedsViewModel: BreedsViewModelProtocol {
-
+    
     var cardViewModels: [CardViewModel] { cards }
 
     func getBreeds() {
 
         service.breeds()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.handle(completion: completion)
+            }, receiveValue: { [weak self] response in
+                self?.handle(response: response)
+            })
+            .store(in: &cancellables)
+    }
+    
+    func searchBreed(query: String) {
+        
+        service.searchBreed(with: query)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.handle(completion: completion)

@@ -10,6 +10,7 @@ import Network
 
 protocol BreedsServiceProtocol {
 
+    func searchBreed(with query: String) -> AnyPublisher<[Breed], Error>
     func breeds() -> AnyPublisher<[Breed], Error>
 }
 
@@ -30,6 +31,11 @@ extension BreedsService: BreedsServiceProtocol {
 
     func breeds() -> AnyPublisher<[Breed], Error> {
         let urlRequest = BreedsRouter.breeds.asURLRequest()
+        return service.request(urlRequest)
+    }
+    
+    func searchBreed(with query: String) -> AnyPublisher<[Breed], Error> {
+        let urlRequest = BreedsRouter.search(query).asURLRequest()
         return service.request(urlRequest)
     }
 }

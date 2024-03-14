@@ -22,30 +22,38 @@ struct CardView<ViewModel: CardViewModelProtocol>: View {
     }
 
     var body: some View {
-        VStack {
-            WebImage(url: viewModel.imageUrl)
-                .resizable()
-                .indicator(.activity)
-                .shadow(radius: CardViewModel.Constants.cornerRadius)
-                .clipped()
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: CardViewModel.Constants.cornerRadius,
-                        bottomLeadingRadius: .zero,
-                        bottomTrailingRadius: .zero,
-                        topTrailingRadius: CardViewModel.Constants.cornerRadius
+        ZStack(alignment: .topTrailing) {
+            VStack {
+                WebImage(url: viewModel.imageUrl)
+                    .resizable()
+                    .indicator(.activity)
+                    .shadow(radius: CardViewModel.Constants.cornerRadius)
+                    .clipped()
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: CardViewModel.Constants.cornerRadius,
+                            bottomLeadingRadius: .zero,
+                            bottomTrailingRadius: .zero,
+                            topTrailingRadius: CardViewModel.Constants.cornerRadius
+                        )
                     )
-                )
-            
-            Text(viewModel.title)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(viewModel.title)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(width: width, height: CardViewModel.Constants.height)
+            .background(
+                RoundedRectangle(cornerRadius: CardViewModel.Constants.cornerRadius)
+                    .fill(Color.white)
+                    .shadow(color: .gray, radius: 2, x: 0, y: 2))
+            Button(action: {
+            }) {
+                Image(systemName: "star")
+                    .padding()
+                    .foregroundColor(.white)
+            }
         }
-        .frame(width: width, height: CardViewModel.Constants.height)
-        .background(
-                    RoundedRectangle(cornerRadius: CardViewModel.Constants.cornerRadius)
-                        .fill(Color.white)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 2))
     }
 }
 

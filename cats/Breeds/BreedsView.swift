@@ -33,8 +33,12 @@ struct BreedsView<ViewModel: BreedsViewModelProtocol>: View {
             }
             .padding()
             .background(Color.white)
-        }.onAppear {
+        }
+        .onAppear {
             viewModel.getBreeds()
         }.searchable(text: $searchText)
+            .onSubmit(of: .search) {
+                viewModel.searchBreed(query: searchText)
+            }
     }
 }
