@@ -24,7 +24,7 @@ struct MainTabbarView: View {
                         Label("Breeds", systemImage: "text.book.closed")
                     }
 
-                FavouritesView(viewModel: FavouritesViewModel(service: FavouritesService(service: network)))
+                FavouritesView(viewModel: FavouritesViewModel())
                     .tabItem {
                         Label("Favourites", systemImage: "star")
                     }

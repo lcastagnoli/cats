@@ -12,24 +12,27 @@ protocol CardViewModelProtocol: Identifiable {
 
     var imageUrl: URL? { get }
     var title: String { get }
+    var isFavorited: Bool { get }
 }
 
 final class CardViewModel { 
 
     // MARK: Constants
     enum Constants {
-        static let height = 200.0
-        static let cornerRadius = 5.0
+        static let height: CGFloat = 200.0
+        static let cornerRadius: CGFloat = 5.0
     }
 
     // MARK: Properties
     private var urlString: String?
     internal var title: String
+    internal var isFavorited: Bool
 
     // MARK: Initializers
-    init(with url: String?, title: String) {
-        self.urlString = url
-        self.title = title
+    init(breed: LocalBreed) {
+        self.urlString = breed.image
+        self.title = breed.name
+        self.isFavorited = breed.isFavorited
     }
 }
 

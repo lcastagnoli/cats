@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
 
     // MARK: Properties
     @ObservedObject private var viewModel: ViewModel
     @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
+    @Query private var breeds: [LocalBreed]
+    @SwiftUI.Environment(\.modelContext) private var modelContext
 
     // MARK: Initializers
     init(viewModel: ViewModel) {
@@ -23,8 +26,13 @@ struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
             GeometryReader { geometry in
                 ScrollView {
                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                        ForEach(viewModel.cardViewModels) { cardViewModel in
-                            CardView(viewModel: cardViewModel, width: (geometry.size.width - 10) / 2)
+                        ForEach(Array(breeds.filter { $0.isFavorited }.enumerated()), id: \.offset) { index, breed in
+                            CardView(viewModel: CardViewModel(breed: breed),
+                                     width: (geometry.size.width - 10) / 2,
+                                     didTapFavourite: {
+                                breed.isFavorited = false
+                                modelContext.insert(breed)
+                            })
                         }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
                     }
                 }
@@ -32,8 +40,6 @@ struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
             }
             .padding()
             .background(Color.white)
-        }.onAppear {
-            viewModel.getFavourites()
         }
     }
 }

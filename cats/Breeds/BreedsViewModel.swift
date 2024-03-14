@@ -11,18 +11,18 @@ import Foundation
 
 protocol BreedsViewModelProtocol: ObservableObject {
 
-    var cardViewModels: [CardViewModel] { get }
+    var localData: [LocalBreed] { get }
     func searchBreed(query: String)
-    func getBreeds()
+    func getBreeds(completion: @escaping () -> Void)
 }
 final class BreedsViewModel {
 
     // MARK: Properties
-    @Published var cards: [CardViewModel] = []
     @Published var error: Error?
     private var cancellables = Set<AnyCancellable>()
     private var service: BreedsServiceProtocol
-    @Published var searchText = ""
+    private var response: [Breed] = []
+    @Published var breeds: [LocalBreed] = []
 
     // MARK: Initializers
     init(service: BreedsServiceProtocol) {
@@ -40,23 +40,25 @@ final class BreedsViewModel {
     }
 
     private func handle(response: [Breed]) {
-        cards = response.map { CardViewModel(with: $0.image?.url, title: $0.name ?? "") }
+        self.response = response
+        breeds = response.map { LocalBreed(with: $0) }
     }
 }
 
 // MARK: - BreedsViewModelProtocol
 extension BreedsViewModel: BreedsViewModelProtocol {
     
-    var cardViewModels: [CardViewModel] { cards }
+    var localData: [LocalBreed] { breeds }
 
-    func getBreeds() {
-
+    func getBreeds(completion: @escaping () -> Void) {
+        
         service.breeds()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.handle(completion: completion)
+            .sink(receiveCompletion: { [weak self] receivedCompletion in
+                self?.handle(completion: receivedCompletion)
             }, receiveValue: { [weak self] response in
                 self?.handle(response: response)
+                completion()
             })
             .store(in: &cancellables)
     }

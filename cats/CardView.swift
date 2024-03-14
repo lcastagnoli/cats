@@ -14,11 +14,13 @@ struct CardView<ViewModel: CardViewModelProtocol>: View {
     // MARK: Properties
     private var viewModel: ViewModel
     private var width: CGFloat
+    private var didTapFavourite: () -> Void
 
     // MARK: Initializers
-    init(viewModel: ViewModel, width: CGFloat) {
+    init(viewModel: ViewModel, width: CGFloat, didTapFavourite: @escaping () -> Void) {
         self.viewModel = viewModel
         self.width = width
+        self.didTapFavourite = didTapFavourite
     }
 
     var body: some View {
@@ -48,15 +50,12 @@ struct CardView<ViewModel: CardViewModelProtocol>: View {
                     .fill(Color.white)
                     .shadow(color: .gray, radius: 2, x: 0, y: 2))
             Button(action: {
+                didTapFavourite()
             }) {
-                Image(systemName: "star")
+                Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
                     .padding()
                     .foregroundColor(.white)
             }
         }
     }
-}
-
-#Preview {
-    CardView(viewModel: CardViewModel(with: "https://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic", title: "Abys"), width: 182)
 }

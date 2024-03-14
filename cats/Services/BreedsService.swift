@@ -7,6 +7,8 @@
 
 import Combine
 import Network
+import SwiftData
+import Foundation
 
 protocol BreedsServiceProtocol {
 
@@ -28,7 +30,7 @@ struct BreedsService {
 
 // MARK: - BreedsServiceProtocol
 extension BreedsService: BreedsServiceProtocol {
-
+ 
     func breeds() -> AnyPublisher<[Breed], Error> {
         let urlRequest = BreedsRouter.breeds.asURLRequest()
         return service.request(urlRequest)

@@ -17,7 +17,6 @@
 		489D74E92B9F8128002493DD /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74E82B9F8128002493DD /* FavouritesViewModel.swift */; };
 		489D74ED2B9F8264002493DD /* MainTabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74EC2B9F8264002493DD /* MainTabbarView.swift */; };
 		489D74F22BA0AB5C002493DD /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 489D74F12BA0AB5C002493DD /* Network */; };
-		489D74F42BA0AB5C002493DD /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 489D74F32BA0AB5C002493DD /* Persistence */; };
 		489D74FC2BA0E4D7002493DD /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74FB2BA0E131002493DD /* Breed.swift */; };
 		489D74FD2BA0E4D7002493DD /* BreedsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74F92BA0E0CB002493DD /* BreedsRouter.swift */; };
 		489D74FE2BA0E4D7002493DD /* BreedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74F72BA0E0CA002493DD /* BreedsService.swift */; };
@@ -25,9 +24,7 @@
 		489D75022BA0F0B7002493DD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D75012BA0F0B7002493DD /* CardView.swift */; };
 		48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855632BA1ADE5008069C9 /* CardViewModel.swift */; };
 		48D855672BA1AF48008069C9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 48D855662BA1AF48008069C9 /* SDWebImageSwiftUI */; };
-		48D855692BA27676008069C9 /* FavouritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855682BA27676008069C9 /* FavouritesRouter.swift */; };
-		48D8556B2BA276D9008069C9 /* FavouritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556A2BA276D9008069C9 /* FavouritesService.swift */; };
-		48D8556D2BA277E8008069C9 /* Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556C2BA277E8008069C9 /* Favourite.swift */; };
+		48D8556F2BA301C7008069C9 /* LocalBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556E2BA301C7008069C9 /* LocalBreed.swift */; };
 		48F8C18B2BA0F7B8002608ED /* BreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8C18A2BA0F7B8002608ED /* BreedImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +50,6 @@
 		489D74E62B9F811C002493DD /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		489D74E82B9F8128002493DD /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		489D74EC2B9F8264002493DD /* MainTabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarView.swift; sourceTree = "<group>"; };
-		489D74EE2B9F8498002493DD /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 		489D74EF2B9F84BA002493DD /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		489D74F52BA0BF96002493DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		489D74F72BA0E0CA002493DD /* BreedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsService.swift; sourceTree = "<group>"; };
@@ -62,9 +58,7 @@
 		489D74FF2BA0E566002493DD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		489D75012BA0F0B7002493DD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		48D855632BA1ADE5008069C9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
-		48D855682BA27676008069C9 /* FavouritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRouter.swift; sourceTree = "<group>"; };
-		48D8556A2BA276D9008069C9 /* FavouritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesService.swift; sourceTree = "<group>"; };
-		48D8556C2BA277E8008069C9 /* Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite.swift; sourceTree = "<group>"; };
+		48D8556E2BA301C7008069C9 /* LocalBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBreed.swift; sourceTree = "<group>"; };
 		48F8C18A2BA0F7B8002608ED /* BreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D855672BA1AF48008069C9 /* SDWebImageSwiftUI in Frameworks */,
-				489D74F42BA0AB5C002493DD /* Persistence in Frameworks */,
 				489D74F22BA0AB5C002493DD /* Network in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				489D74EF2B9F84BA002493DD /* Network */,
-				489D74EE2B9F8498002493DD /* Persistence */,
 				489D74B12B9F7EA6002493DD /* cats */,
 				489D74C42B9F7EA9002493DD /* catsTests */,
 				489D74B02B9F7EA6002493DD /* Products */,
@@ -191,7 +183,6 @@
 				489D74FA2BA0E131002493DD /* Models */,
 				489D74F82BA0E0CB002493DD /* Routers */,
 				489D74F72BA0E0CA002493DD /* BreedsService.swift */,
-				48D8556A2BA276D9008069C9 /* FavouritesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				489D74F92BA0E0CB002493DD /* BreedsRouter.swift */,
-				48D855682BA27676008069C9 /* FavouritesRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -210,7 +200,7 @@
 			children = (
 				489D74FB2BA0E131002493DD /* Breed.swift */,
 				48F8C18A2BA0F7B8002608ED /* BreedImage.swift */,
-				48D8556C2BA277E8008069C9 /* Favourite.swift */,
+				48D8556E2BA301C7008069C9 /* LocalBreed.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,7 +223,6 @@
 			name = cats;
 			packageProductDependencies = (
 				489D74F12BA0AB5C002493DD /* Network */,
-				489D74F32BA0AB5C002493DD /* Persistence */,
 				48D855662BA1AF48008069C9 /* SDWebImageSwiftUI */,
 			);
 			productName = cats;
@@ -326,19 +315,17 @@
 				48F8C18B2BA0F7B8002608ED /* BreedImage.swift in Sources */,
 				489D74FC2BA0E4D7002493DD /* Breed.swift in Sources */,
 				489D74FD2BA0E4D7002493DD /* BreedsRouter.swift in Sources */,
-				48D8556B2BA276D9008069C9 /* FavouritesService.swift in Sources */,
 				489D74FE2BA0E4D7002493DD /* BreedsService.swift in Sources */,
 				489D74E22B9F80E2002493DD /* BreedsViewModel.swift in Sources */,
 				489D74ED2B9F8264002493DD /* MainTabbarView.swift in Sources */,
-				48D855692BA27676008069C9 /* FavouritesRouter.swift in Sources */,
 				489D74E42B9F80EF002493DD /* BreedsView.swift in Sources */,
 				489D74E92B9F8128002493DD /* FavouritesViewModel.swift in Sources */,
+				48D8556F2BA301C7008069C9 /* LocalBreed.swift in Sources */,
 				48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */,
 				489D74E72B9F811C002493DD /* FavouritesView.swift in Sources */,
 				489D74B32B9F7EA6002493DD /* catsApp.swift in Sources */,
 				489D75022BA0F0B7002493DD /* CardView.swift in Sources */,
 				489D75002BA0E567002493DD /* Environment.swift in Sources */,
-				48D8556D2BA277E8008069C9 /* Favourite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,10 +610,6 @@
 		489D74F12BA0AB5C002493DD /* Network */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Network;
-		};
-		489D74F32BA0AB5C002493DD /* Persistence */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Persistence;
 		};
 		48D855662BA1AF48008069C9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
