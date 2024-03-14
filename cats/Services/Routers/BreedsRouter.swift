@@ -12,9 +12,6 @@ enum BreedsRouter: URLRequestCreator {
 
     case breeds
     case search(String)
-    case favourites
-    case addfavourite
-    case deletefavourite(String)
 
     var baseURL: URL { Environment.baseUrl }
 
@@ -23,13 +20,8 @@ enum BreedsRouter: URLRequestCreator {
         switch self {
 
         case .breeds,
-             .search,
-             .favourites:
+             .search:
             return .get
-        case .addfavourite:
-            return .post
-        case .deletefavourite:
-            return .delete
         }
     }
 
@@ -41,17 +33,12 @@ enum BreedsRouter: URLRequestCreator {
             return "/breeds"
         case .search:
             return "/breeds/search"
-        case .addfavourite,
-             .favourites:
-            return "/breeds/favourites"
-        case let .deletefavourite(id):
-            return "/breeds/favourites/\(id)"
         }
     }
     
     var headers: [String : String]? {
         
-        return ["x-api-key": "live_xXBTalO9OhXMTp9RtonV24hUE7a7ob4hJ3XEA3LIT0aQVQsZpfTJf7mKxzdf66O0"]
+        return ["x-api-key": Environment.apiKey]
     }
     
     var queries: [String : String]? {

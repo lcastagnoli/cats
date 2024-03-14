@@ -14,5 +14,5 @@ struct Breed: Decodable {
     let referenceImageID: String?
     let description: String?
     let image: BreedImage?
+    let lifeSpan: String?
 }
-

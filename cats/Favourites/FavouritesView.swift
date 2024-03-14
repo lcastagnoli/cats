@@ -7,12 +7,33 @@
 
 import SwiftUI
 
-struct FavouritesView: View {
-    var body: some View {
-        Text("Favourites")
-    }
-}
+struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
 
-#Preview {
-    FavouritesView()
+    // MARK: Properties
+    @ObservedObject private var viewModel: ViewModel
+    @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
+
+    // MARK: Initializers
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+
+    var body: some View {
+        NavigationView {
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
+                        ForEach(viewModel.cardViewModels) { cardViewModel in
+                            CardView(viewModel: cardViewModel, width: (geometry.size.width - 10) / 2)
+                        }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
+                    }
+                }
+                .scrollIndicators(.hidden)
+            }
+            .padding()
+            .background(Color.white)
+        }.onAppear {
+            viewModel.getFavourites()
+        }
+    }
 }

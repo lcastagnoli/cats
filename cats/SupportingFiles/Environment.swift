@@ -19,4 +19,14 @@ enum Environment {
         }
         return url
     }
+    
+    static var apiKey: String {
+
+        guard
+            let apiKey = Bundle.main.object(forInfoDictionaryKey: "apiKey") as? String else {
+
+            fatalError("Missing InfoPlist apiKey")
+        }
+        return apiKey
+    }
 }

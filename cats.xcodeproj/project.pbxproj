@@ -25,6 +25,9 @@
 		489D75022BA0F0B7002493DD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D75012BA0F0B7002493DD /* CardView.swift */; };
 		48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855632BA1ADE5008069C9 /* CardViewModel.swift */; };
 		48D855672BA1AF48008069C9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 48D855662BA1AF48008069C9 /* SDWebImageSwiftUI */; };
+		48D855692BA27676008069C9 /* FavouritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D855682BA27676008069C9 /* FavouritesRouter.swift */; };
+		48D8556B2BA276D9008069C9 /* FavouritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556A2BA276D9008069C9 /* FavouritesService.swift */; };
+		48D8556D2BA277E8008069C9 /* Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8556C2BA277E8008069C9 /* Favourite.swift */; };
 		48F8C18B2BA0F7B8002608ED /* BreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F8C18A2BA0F7B8002608ED /* BreedImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,9 @@
 		489D74FF2BA0E566002493DD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		489D75012BA0F0B7002493DD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		48D855632BA1ADE5008069C9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		48D855682BA27676008069C9 /* FavouritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRouter.swift; sourceTree = "<group>"; };
+		48D8556A2BA276D9008069C9 /* FavouritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesService.swift; sourceTree = "<group>"; };
+		48D8556C2BA277E8008069C9 /* Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite.swift; sourceTree = "<group>"; };
 		48F8C18A2BA0F7B8002608ED /* BreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +191,7 @@
 				489D74FA2BA0E131002493DD /* Models */,
 				489D74F82BA0E0CB002493DD /* Routers */,
 				489D74F72BA0E0CA002493DD /* BreedsService.swift */,
+				48D8556A2BA276D9008069C9 /* FavouritesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				489D74F92BA0E0CB002493DD /* BreedsRouter.swift */,
+				48D855682BA27676008069C9 /* FavouritesRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 			children = (
 				489D74FB2BA0E131002493DD /* Breed.swift */,
 				48F8C18A2BA0F7B8002608ED /* BreedImage.swift */,
+				48D8556C2BA277E8008069C9 /* Favourite.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,9 +326,11 @@
 				48F8C18B2BA0F7B8002608ED /* BreedImage.swift in Sources */,
 				489D74FC2BA0E4D7002493DD /* Breed.swift in Sources */,
 				489D74FD2BA0E4D7002493DD /* BreedsRouter.swift in Sources */,
+				48D8556B2BA276D9008069C9 /* FavouritesService.swift in Sources */,
 				489D74FE2BA0E4D7002493DD /* BreedsService.swift in Sources */,
 				489D74E22B9F80E2002493DD /* BreedsViewModel.swift in Sources */,
 				489D74ED2B9F8264002493DD /* MainTabbarView.swift in Sources */,
+				48D855692BA27676008069C9 /* FavouritesRouter.swift in Sources */,
 				489D74E42B9F80EF002493DD /* BreedsView.swift in Sources */,
 				489D74E92B9F8128002493DD /* FavouritesViewModel.swift in Sources */,
 				48D855642BA1ADE5008069C9 /* CardViewModel.swift in Sources */,
@@ -327,6 +338,7 @@
 				489D74B32B9F7EA6002493DD /* catsApp.swift in Sources */,
 				489D75022BA0F0B7002493DD /* CardView.swift in Sources */,
 				489D75002BA0E567002493DD /* Environment.swift in Sources */,
+				48D8556D2BA277E8008069C9 /* Favourite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

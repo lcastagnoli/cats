@@ -37,7 +37,8 @@ extension URLRequestCreator {
             guard let queries else { return request }
             request.url = request.url?.appending(queries: queries)
 
-        case (.post, let queries):
+        case (.post, let queries),
+             (.delete, let queries):
             request = encode(request: &request, with: queries, and: parameters)
         }
         return request
