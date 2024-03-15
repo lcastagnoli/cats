@@ -8,40 +8,72 @@
 import SwiftUI
 import SwiftData
 
-struct FavouritesView<ViewModel: FavouritesViewModelProtocol>: View {
+struct FavouritesView: View {
 
     // MARK: Properties
-    @ObservedObject private var viewModel: ViewModel
+    @State private var viewModel: FavouritesViewModel
     @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
-    @Query private var breeds: [LocalBreed]
-    @SwiftUI.Environment(\.modelContext) private var modelContext
 
     // MARK: Initializers
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
+    init(modelContext: ModelContext) {
+        let viewModel = FavouritesViewModel(modelContext: modelContext)
+        _viewModel = State(initialValue: viewModel)
     }
 
+    // MARK: UI
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                ScrollView {
-                    LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                        ForEach(Array(breeds.filter { $0.isFavorited }.enumerated()), id: \.offset) { index, breed in
-                            NavigationLink(destination: DetailsView(breed: breed)) {
-                                CardView(viewModel: CardViewModel(breed: breed),
-                                         width: (geometry.size.width - 10) / 2,
-                                         didTapFavourite: {
-                                    breed.isFavorited = false
-                                    modelContext.insert(breed)
-                                })
-                            }
-                        }.frame(width: CardViewModel.Constants.height, height: CardViewModel.Constants.height)
-                    }
-                }
-                .scrollIndicators(.hidden)
+            ScrollView {
+                LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
+                    ForEach(Array(viewModel.favourites.enumerated()), id: \.offset) { index, breed in
+                        NavigationLink(destination: DetailsView(modelContext: viewModel.modelContext, breed: breed)) {
+                            CardView(breed: breed,
+                                     isFavorite: true) {
+                                viewModel.removeFavourite(index: index)
+                            }.frame(minWidth: .zero, maxWidth: .infinity)
+                        }
+                    }.frame(height: Constants.height)
+                }.padding(.all, 10)
             }
-            .padding()
             .background(Color.white)
+            .scrollIndicators(.hidden)
+        }
+        .accentColor(.black)
+        .onAppear {
+            viewModel.fetchData()
+        }
+    }
+}
+
+extension FavouritesView {
+
+    @Observable
+    class FavouritesViewModel {
+
+        // MARK: Properties
+        var modelContext: ModelContext
+        var favourites = [Favourite]()
+
+        // MARK: Initializers
+        init(modelContext: ModelContext) {
+            self.modelContext = modelContext
+            fetchData()
+        }
+
+        // MARK: Methods
+        func removeFavourite(index: Int) {
+            
+            modelContext.delete(favourites[index])
+            fetchData()
+        }
+
+        func fetchData() {
+            do {
+                let descriptor = FetchDescriptor<Favourite>(sortBy: [SortDescriptor(\.name)])
+                favourites = try modelContext.fetch(descriptor)
+            } catch {
+                print("Fetch failed")
+            }
         }
     }
 }

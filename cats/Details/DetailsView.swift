@@ -7,30 +7,33 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SwiftData
 
 struct DetailsView: View {
     
     @State private var isFavorited = false
 
     // MARK: Properties
-    private var breed: LocalBreed
+    @State private var viewModel: DetailsViewModel
     private var  details: String {
-        "Origin: \(breed.origin)\nTemperament: \(breed.temperament)\nDescription: \(breed.descriptionBreed)"
+        "Origin: \(viewModel.breed.origin)\nTemperament: \(viewModel.breed.temperament)\nDescription: \(viewModel.breed.description)"
     }
 
     // MARK: Initializers
-    init(breed: LocalBreed) {
-        self.breed = breed
+    init(modelContext: ModelContext, breed: BreedProtocol) {
+        let viewModel = DetailsViewModel(modelContext: modelContext, breed: breed)
+        _viewModel = State(initialValue: viewModel)
     }
     
+    // MARK: UI
     var body: some View {
         ScrollView {
             ZStack(alignment: .topTrailing) {
                 VStack {
-                    WebImage(url: URL(string: breed.image))
+                    WebImage(url: URL(string: viewModel.breed.imageUrl))
                         .resizable()
                         .indicator(.activity)
-                        .frame(height: 200)
+                        .scaledToFit()
                         .edgesIgnoringSafeArea(.top)
                     Text(details)
                         .font(.subheadline)
@@ -38,19 +41,58 @@ struct DetailsView: View {
                         .padding()
                 }
                 Button(action: {
-                    breed.isFavorited.toggle()
+                    viewModel.handleFavourite()
                 }) {
-                    Image(systemName: breed.isFavorited ? "star.fill" : "star")
+                    Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
                         .padding()
                         .foregroundColor(.black)
                 }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(breed.name)
+        .navigationTitle(viewModel.breed.name)
     }
 }
 
-#Preview {
-    DetailsView(breed: LocalBreed(id: "", name: "", temperament: "", origin: "", descriptionBreed: "", image: "", lifeSpan: "", isFavorited: true))
+extension DetailsView {
+
+    @Observable
+    class DetailsViewModel {
+
+        // MARK: Properties
+        var modelContext: ModelContext
+        var favourites = [Favourite]()
+        var breed: BreedProtocol
+        var isFavorited: Bool { favourites.contains(where: { $0.id == breed.id }) }
+
+        // MARK: Initializers
+        init(modelContext: ModelContext, breed: BreedProtocol) {
+            self.modelContext = modelContext
+            self.breed = breed
+            fetchData()
+        }
+
+        private func fetchData() {
+            do {
+                let descriptor = FetchDescriptor<Favourite>(sortBy: [SortDescriptor(\.name)])
+                favourites = try modelContext.fetch(descriptor)
+            } catch {
+                print("Fetch failed")
+            }
+        }
+
+        func handleFavourite() {
+            
+            if let favourite = favourites.first(where: { $0.id == breed.id }) {
+                modelContext.delete(favourite)
+            } else {
+                if let onlineBreed = breed as? Breed {
+                    modelContext.insert(Favourite(with: onlineBreed))
+                } else if let localBreed = breed as? Favourite {
+                    modelContext.insert(localBreed)
+                }
+            }
+            fetchData()
+        }
+    }
 }

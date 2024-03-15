@@ -8,52 +8,53 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct CardView<ViewModel: CardViewModelProtocol>: View {
-
+struct CardView: View {
 
     // MARK: Properties
-    private var viewModel: ViewModel
-    private var width: CGFloat
+    private var breed: BreedProtocol
+    private var isFavorite: Bool
     private var didTapFavourite: () -> Void
 
     // MARK: Initializers
-    init(viewModel: ViewModel, width: CGFloat, didTapFavourite: @escaping () -> Void) {
-        self.viewModel = viewModel
-        self.width = width
+    init(breed: BreedProtocol, isFavorite: Bool, didTapFavourite: @escaping () -> Void) {
+        self.breed = breed
+        self.isFavorite = isFavorite
         self.didTapFavourite = didTapFavourite
     }
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
-                WebImage(url: viewModel.imageUrl)
-                    .resizable()
-                    .indicator(.activity)
-                    .shadow(radius: CardViewModel.Constants.cornerRadius)
-                    .clipped()
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: CardViewModel.Constants.cornerRadius,
-                            bottomLeadingRadius: .zero,
-                            bottomTrailingRadius: .zero,
-                            topTrailingRadius: CardViewModel.Constants.cornerRadius
+                GeometryReader { geo in
+                    WebImage(url: URL(string: breed.imageUrl))
+                        .resizable()
+                        .indicator(.activity)
+                        .scaledToFill()
+                        .shadow(radius: Constants.cornerRadius)
+                        .clipShape(
+                            .rect(
+                                topLeadingRadius: Constants.cornerRadius,
+                                bottomLeadingRadius: .zero,
+                                bottomTrailingRadius: .zero,
+                                topTrailingRadius: Constants.cornerRadius
+                            )
                         )
-                    )
-                
-                Text(viewModel.title)
+                        .frame(width: geo.size.width, height: 150)
+                        .clipped()
+                }
+                Text(breed.name)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(.black)
             }
-            .frame(width: width, height: CardViewModel.Constants.height)
             .background(
-                RoundedRectangle(cornerRadius: CardViewModel.Constants.cornerRadius)
+                RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .fill(Color.white)
                     .shadow(color: .gray, radius: 2, x: 0, y: 2))
             Button(action: {
                 didTapFavourite()
             }) {
-                Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
+                Image(systemName: isFavorite ? "star.fill" : "star")
                     .padding()
                     .foregroundColor(.black)
                     .background(.white.opacity(0.5))

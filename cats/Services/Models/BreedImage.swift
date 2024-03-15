@@ -7,8 +7,6 @@
 
 struct BreedImage: Decodable {
 
-    let id: String?
-    let width: Int?
-    let height: Int?
-    let url: String?
+    let id: String
+    let url: String
 }

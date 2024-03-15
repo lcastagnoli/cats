@@ -15,6 +15,6 @@ struct catsApp: App {
         WindowGroup {
             MainTabbarView()
         }
-        .modelContainer(for: LocalBreed.self)
+        .modelContainer(for: Favourite.self)
     }
 }

@@ -12,6 +12,7 @@ struct MainTabbarView: View {
 
     private let session = URLSession.shared
     private let network: Newtork
+    @SwiftUI.Environment(\.modelContext) var modelContext
 
     init() {
         self.network = Newtork(session: self.session)
@@ -19,19 +20,16 @@ struct MainTabbarView: View {
 
     var body: some View {
             TabView {
-                BreedsView(viewModel: BreedsViewModel(service: BreedsService(service: network)))
+                BreedsView(modelContext: modelContext, service: BreedsService(service: network))
                     .tabItem {
                         Label("Breeds", systemImage: "text.book.closed")
                     }
 
-                FavouritesView(viewModel: FavouritesViewModel())
+                FavouritesView(modelContext: modelContext)
                     .tabItem {
                         Label("Favourites", systemImage: "star")
                     }
             }
+            .tint(.black)
     }
-}
-
-#Preview {
-    MainTabbarView()
 }

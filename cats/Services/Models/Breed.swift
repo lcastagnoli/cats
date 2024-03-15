@@ -7,12 +7,16 @@
 
 struct Breed: Decodable {
 
-    let id: String?
-    let name: String?
-    let temperament: String?
-    let origin: String?
-    let referenceImageID: String?
-    let description: String?
+    let id: String
+    let name: String
+    let temperament: String
+    let origin: String
+    let description: String
     let image: BreedImage?
-    let lifeSpan: String?
+    let lifeSpan: String
+}
+
+extension Breed: BreedProtocol {
+
+    var imageUrl: String { image?.url ?? "" }
 }
