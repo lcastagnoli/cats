@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		489D74B32B9F7EA6002493DD /* catsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74B22B9F7EA6002493DD /* catsApp.swift */; };
 		489D74B92B9F7EA8002493DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489D74B82B9F7EA8002493DD /* Assets.xcassets */; };
-		489D74BC2B9F7EA8002493DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489D74BB2B9F7EA8002493DD /* Preview Assets.xcassets */; };
 		489D74E42B9F80EF002493DD /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74E32B9F80EF002493DD /* BreedsView.swift */; };
 		489D74E72B9F811C002493DD /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74E62B9F811C002493DD /* FavouritesView.swift */; };
 		489D74ED2B9F8264002493DD /* MainTabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D74EC2B9F8264002493DD /* MainTabbarView.swift */; };
@@ -47,7 +46,6 @@
 		489D74AF2B9F7EA6002493DD /* cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		489D74B22B9F7EA6002493DD /* catsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catsApp.swift; sourceTree = "<group>"; };
 		489D74B82B9F7EA8002493DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		489D74BB2B9F7EA8002493DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		489D74C12B9F7EA9002493DD /* catsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		489D74E32B9F80EF002493DD /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
 		489D74E62B9F811C002493DD /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
@@ -121,18 +119,9 @@
 				489D74EB2B9F8249002493DD /* MainTabbar */,
 				489D74E52B9F8107002493DD /* Favourites */,
 				489D74DE2B9F8088002493DD /* Breeds */,
-				489D74BA2B9F7EA8002493DD /* Preview Content */,
 				489D75012BA0F0B7002493DD /* CardView.swift */,
 			);
 			path = cats;
-			sourceTree = "<group>";
-		};
-		489D74BA2B9F7EA8002493DD /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				489D74BB2B9F7EA8002493DD /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		489D74C42B9F7EA9002493DD /* catsTests */ = {
@@ -316,7 +305,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				489D74BC2B9F7EA8002493DD /* Preview Assets.xcassets in Resources */,
 				489D74B92B9F7EA8002493DD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,13 +490,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"cats/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cats/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -531,13 +518,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"cats/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cats/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

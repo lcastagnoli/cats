@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>splash</string>
+	</dict>
 	<key>apiKey</key>
 	<string>live_xXBTalO9OhXMTp9RtonV24hUE7a7ob4hJ3XEA3LIT0aQVQsZpfTJf7mKxzdf66O0</string>
 	<key>baseUrl</key>
