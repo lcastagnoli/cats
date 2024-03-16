@@ -11,5 +11,6 @@ import Foundation
 enum Constants {
     static let height: CGFloat = 200.0
     static let cornerRadius: CGFloat = 5.0
+    static let padding = 10.0
 }
 

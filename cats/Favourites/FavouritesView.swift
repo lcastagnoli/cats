@@ -13,6 +13,7 @@ struct FavouritesView: View {
     // MARK: Properties
     @State private var viewModel: FavouritesViewModel
     @State var gridLayout: [GridItem] = [ GridItem(.flexible()), GridItem(.flexible())]
+    @Query private var favourites: [Favourite]
 
     // MARK: Initializers
     init(modelContext: ModelContext) {
@@ -24,12 +25,12 @@ struct FavouritesView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                    ForEach(Array(viewModel.favourites.enumerated()), id: \.offset) { index, breed in
+                LazyVGrid(columns: gridLayout, alignment: .center, spacing: Constants.padding) {
+                    ForEach(Array(favourites.enumerated()), id: \.offset) { index, breed in
                         NavigationLink(destination: DetailsView(modelContext: viewModel.modelContext, breed: breed)) {
                             CardView(breed: breed,
                                      isFavorite: true) {
-                                viewModel.removeFavourite(index: index)
+                                viewModel.removeFavourite(index: index, favourites)
                             }.frame(minWidth: .zero, maxWidth: .infinity)
                         }
                     }.frame(height: Constants.height)
@@ -39,41 +40,5 @@ struct FavouritesView: View {
             .scrollIndicators(.hidden)
         }
         .accentColor(.black)
-        .onAppear {
-            viewModel.fetchData()
-        }
-    }
-}
-
-extension FavouritesView {
-
-    @Observable
-    class FavouritesViewModel {
-
-        // MARK: Properties
-        var modelContext: ModelContext
-        var favourites = [Favourite]()
-
-        // MARK: Initializers
-        init(modelContext: ModelContext) {
-            self.modelContext = modelContext
-            fetchData()
-        }
-
-        // MARK: Methods
-        func removeFavourite(index: Int) {
-            
-            modelContext.delete(favourites[index])
-            fetchData()
-        }
-
-        func fetchData() {
-            do {
-                let descriptor = FetchDescriptor<Favourite>(sortBy: [SortDescriptor(\.name)])
-                favourites = try modelContext.fetch(descriptor)
-            } catch {
-                print("Fetch failed")
-            }
-        }
     }
 }
